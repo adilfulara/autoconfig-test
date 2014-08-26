@@ -8,6 +8,7 @@ import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
 import javax.jms.ConnectionFactory;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Service
@@ -21,6 +22,9 @@ public class FooService {
     @Autowired
     private ConnectionFactory connectionFactory;
 
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
+
     @PostConstruct
     public void init() {
         Assert.notNull(dataSource, "dataSource is null!");
@@ -28,5 +32,8 @@ public class FooService {
 
         Assert.notNull(connectionFactory, "connectionFactory is null!");
         logger.info("connectionFactory not null");
+
+        Assert.notNull(entityManagerFactory, "entityManagerFactory is null!");
+        logger.info("entityManagerFactory is not null");
     }
 }
